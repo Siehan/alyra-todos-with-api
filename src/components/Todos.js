@@ -1,9 +1,11 @@
-import React, { useEffect, useReducer } from "react"
-import TodosList from "./TodosList"
-import AddTodoForm from "./AddTodoForm"
-import { todosReducer } from "../reducers/todosReducer"
-import { TodosDispatchContext } from "../context/TodosDispatchContext"
+import React, { useEffect, useReducer } from "react";
+import TodosList from "./TodosList";
+import AddTodoForm from "./AddTodoForm";
+import { todosReducer } from "../reducers/todosReducer";
+import { TodosDispatchContext } from "../context/TodosDispatchContext";
+import { useIsMounted } from "../hooks/useIsMounted";
 
+/*
 const initialTodos = [
   {
     text: "Forkez et cloner ce repo",
@@ -26,31 +28,56 @@ const initialTodos = [
     id: "df0ce18c-b4fa-4651-82c0-72fad6b486e4",
   },
 ]
+*/
+
+const initialState = {
+  todos: [],
+  loading: false,
+  error: "",
+};
 
 const Todos = () => {
-  const [state, dispatch] = useReducer(
-    todosReducer,
-    initialTodos,
-    (initialTodos) => {
-      return (
-        JSON.parse(window.localStorage.getItem("my-new-todos")) || initialTodos
-      )
-    }
-  )
+  const [state, dispatch] = useReducer(todosReducer, initialState);
+  const { todos, loading, error } = state;
+  const isMounted = useIsMounted();
+  console.log(isMounted);
 
   useEffect(() => {
-    window.localStorage.setItem("my-new-todos", JSON.stringify(state))
-  }, [state])
+    dispatch({ type: "FETCH_INIT" });
+    fetch(`${process.env.REACT_APP_API_URL}/todos`)
+      .then((response) => {
+        console.log(response);
+        if (!response.ok) {
+          throw new Error(`Something went wrong: ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then((result) => {
+        console.log(result);
+        if (isMounted.current) {
+          dispatch({ type: "FETCH_SUCCESS", payload: result });
+        }
+      })
+      .catch((error) => {
+        if (isMounted.current) {
+          dispatch({ type: "FETCH_FAILURE", payload: error.message });
+        }
+      });
+  }, [isMounted]);
 
   return (
     <main>
-      <h2 className="text-center">Ma liste de tâches ({state.length})</h2>
+      {error && <p className="alert alert-danger">{error}</p>}
+      <h2 className="text-center pb-3 pt-3">
+        Ma liste de tâches : <span className="text-success">{todos.length}</span>
+      </h2>
       <TodosDispatchContext.Provider value={dispatch}>
-        <TodosList todos={state} />
+        <TodosList todos={todos} />
         <AddTodoForm />
+        {loading && <p>Loading...</p>}
       </TodosDispatchContext.Provider>
     </main>
-  )
-}
+  );
+};
 
-export default Todos
+export default Todos;

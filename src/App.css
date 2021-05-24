@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  font-size: 1.3rem;
+}
+
+#nav-bar {
+  background-image: linear-gradient(120deg, #3cb0f388 0%, hsla(204, 70%, 55%, 0.739) 100%);
+}
+
+@media all and (min-width: 480px) {
+  Login {
+    padding: 60px 0;
+  }
+
+  Login {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
+
+/*
+background-image: linear-gradient(120deg, #0d98e91e 0%, hsla(115, 91%, 45%, 0.315) 100%);
+*/
