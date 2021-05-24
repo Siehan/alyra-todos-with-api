@@ -11,19 +11,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-/*
-body {
-  margin: 0;
-  font-family: "Kiwi Maru", sans-serif;
-  VERT = background-image: linear-gradient(120deg, #b5df9c 0%, #5cdd3c 100%);
-  background-image: linear-gradient(120deg, #4faa1b 0%, #3caadd 100%);
-  BLEU : background-image: linear-gradient(120deg, hsla(197, 89%, 65%, 0.377) 0%, #11a8ee 100%);
-  bleu ciel / background-image: linear-gradient(120deg, #3cb0f388 0%, hsla(204, 70%, 55%, 0.452) 100%);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*/
-
 select.form-control,
 textarea.form-control,
 input.form-control {

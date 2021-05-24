@@ -9,7 +9,7 @@
 }
 
 #nav-bar {
-  background-image: linear-gradient(120deg, #3cb0f388 0%, hsla(204, 70%, 55%, 0.739) 100%);
+  background-image: linear-gradient(120deg, #42525c1e 0%, hsla(120, 1%, 16%, 0.205) 100%);
 }
 
 @media all and (min-width: 480px) {
@@ -24,5 +24,7 @@
 }
 
 /*
+background-image: linear-gradient(120deg, #42525c1e 0%, hsla(120, 1%, 16%, 0.315) 100%);
 background-image: linear-gradient(120deg, #0d98e91e 0%, hsla(115, 91%, 45%, 0.315) 100%);
+background-image: linear-gradient(120deg, #3cb0f388 0%, hsla(204, 70%, 55%, 0.739) 100%);
 */

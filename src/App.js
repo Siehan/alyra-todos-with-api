@@ -46,7 +46,7 @@ function App() {
           <ColorModeContainer>
             <div className="App container py-3">
               <Navbar collapseOnSelect bg="light" expand="md" id="nav-bar" className="mb-3 rounded">
-                <LinkContainer to="/home">
+                <LinkContainer to="/">
                   <Navbar.Brand className="font-weight-bold text-muted">Home</Navbar.Brand>
                 </LinkContainer>
                 <LinkContainer to="/todos">

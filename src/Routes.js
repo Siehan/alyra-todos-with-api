@@ -9,7 +9,7 @@ import NotFound from "./containers/NotFound";
 export default function Routes() {
   return (
     <Switch>
-      <Route exact path="/home">
+      <Route exact path="/">
         <Home />
       </Route>
       <Route exact path="/todos">
